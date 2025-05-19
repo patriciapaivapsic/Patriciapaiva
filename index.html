@@ -28,8 +28,12 @@
                          'whatsapp-button-color': '#25D366', // Mantido o verde WhatsApp
                          'whatsapp-button-darker': '#128751', // Mantido o verde WhatsApp mais escuro
                          'instagram-button-color': '#A66C8F', // Mantido a cor Instagram
-                         'writer-button-color': '#C58940', // Usando Marrom/Laranja Médio para botão Escritora
-                         'writer-button-darker': '#a47035', // Marrom/Laranja Médio mais escuro
+                         'writer-button-color': '#C58940', // Usando Marrom/Laranja Médio para botão Escritora (OBS: Será alterado para verde no CSS)
+                         'writer-button-darker': '#a47035', // Marrom/Laranja Médio mais escuro (OBS: Será alterado para verde no CSS)
+
+                         // Novas variáveis para o botão do livro (tons de verde)
+                         'book-button-green': '#4A5D42', /* Usando o Dark Green da paleta */
+                         'book-button-green-darker': '#3c4d36', /* Um pouco mais escuro para hover */
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'], // Fonte principal Inter
@@ -72,6 +76,10 @@
             --whatsapp-green-darker: #128751; /* Verde mais escuro para hover */
             --instagram-color: #A66C8F; /* Cor Instagram (mantida) */
              --email-float-color: #777; /* Cor cinza para Email flutuante */
+
+             /* Variáveis para o botão do livro (tons de verde) */
+             --book-button-green: #4A5D42; /* Usando o Dark Green da paleta */
+             --book-button-green-darker: #3c4d36; /* Um pouco mais escuro para hover */
          }
 
 
@@ -145,15 +153,15 @@
              font-size: 1.3rem; /* Tamanho do ícone ajustado */
          }
 
-        /* Estilo específico para o botão de Escritora (usando Marrom/Laranja Médio) */
+        /* Estilo específico para o botão de Escritora (AGORA VERDE) */
         .btn-option.writer-button {
-             background: linear-gradient(to right, var(--palette2-medium-brown), var(--writer-button-darker)); /* Gradiente com nova cor */
+             background: linear-gradient(to right, var(--book-button-green), var(--book-button-green-darker)); /* Gradiente com tons de verde */
         }
          .btn-option.writer-button:hover {
-             background: linear-gradient(to right, var(--writer-button-darker), #8c5d2a); /* Gradiente mais escuro */
+             background: linear-gradient(to right, var(--book-button-green-darker), #303e2b); /* Gradiente mais escuro */
          }
 
-         /* Estilo específico para o botão de WhatsApp (VERDE NOVAMENTE) */
+         /* Estilo específico para o botão de WhatsApp (VERDE) */
         .btn-option.whatsapp-button {
              background: linear-gradient(to right, var(--whatsapp-green), var(--whatsapp-green-darker)); /* Gradiente Verde para WhatsApp */
         }
@@ -185,11 +193,11 @@
             font-family: 'Lora', serif;
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: var(--palette2-dark-green); /* Verde Escuro */
+            color: var(--palette2-black); /* Cor do título PRETO */
         }
         .writer-section p {
             font-size: 1rem;
-            color: var(--palette2-dark-green); /* Verde Escuro */
+            color: var(--palette2-black); /* Cor do texto PRETO */
             margin-bottom: 20px;
             line-height: 1.6;
             max-width: 600px;
@@ -211,12 +219,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 60px; /* Tamanho do círculo REDUZIDO */
-            height: 60px; /* Tamanho do círculo REDUZIDO */
+            width: 40px; /* Tamanho do círculo REDUZIDO AINDA MAIS */
+            height: 40px; /* Tamanho do círculo REDUZIDO AINDA MAIS */
             border-radius: 50%; /* Forma de círculo */
             color: white;
-            font-size: 2.5rem; /* Tamanho do ícone REDUZIDO */
-            margin-bottom: 10px; /* Espaço entre os ícones REDUZIDO */
+            font-size: 1.6rem; /* Tamanho do ícone REDUZIDO AINDA MAIS */
+            margin-bottom: 5px; /* Espaço entre os ícones REDUZIDO AINDA MAIS */
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -365,11 +373,11 @@
 
         .answer-combo .question-text {
             font-weight: 600;
-            color: var(--palette2-dark-green); /* Cor da pergunta no combo (Dark Green) */
+            color: var(--palette2-black); /* Cor da pergunta no combo PRETO */
         }
 
         .answer-combo .answer-text {
-            color: var(--palette2-dark-green); /* Cor da resposta no combo (Dark Green) */
+            color: var(--palette2-black); /* Cor da resposta no combo PRETO */
             /* Removido overflow-y e max-height */
         }
 
@@ -488,6 +496,19 @@
             text-decoration: underline;
         }
 
+        /* Estilo para o rodapé */
+        footer {
+            background-color: transparent; /* Fundo transparente */
+            color: var(--palette2-dark-green); /* Cor do texto do rodapé (Verde Escuro) */
+            padding: 20px 0; /* Padding ajustado */
+            text-align: center;
+            width: 100%;
+            margin-top: auto; /* Empurra o rodapé para baixo */
+        }
+         footer p {
+             font-size: 0.9rem; /* Tamanho da fonte do texto do rodapé */
+         }
+
 
          /* Responsividade */
         @media (max-width: 768px) {
@@ -528,10 +549,10 @@
                  right: 15px;
              }
              .floating-icon-linktree {
-                 width: 50px; /* Ajustado para mobile REDUZIDO */
-                 height: 50px; /* Ajustado para mobile REDUZIDO */
-                 font-size: 2rem; /* Ajustado para mobile REDUZIDO */
-                 margin-bottom: 8px; /* Ajustado para mobile REDUZIDO */
+                 width: 45px; /* Ajustado para mobile REDUZIDO */
+                 height: 45px; /* Ajustado para mobile REDUZIDO */
+                 font-size: 1.8rem; /* Ajustado para mobile REDUZIDO */
+                 margin-bottom: 6px; /* Espaço entre os ícones REDUZIDO */
              }
              .topic-chat-container {
                  padding: 10px;
@@ -554,9 +575,6 @@
                    margin-right: auto; /* Empurra para a esquerda */
                    margin-bottom: 0; /* Remove margem inferior */
                    flex-wrap: nowrap; /* Evita quebra de linha para o botão único */
-               }
-               .answer-combo .back-to-questions-btn {
-                   display: none; /* Continua escondido */
                }
                .answer-combo .close-chat-btn-inline {
                    width: auto; /* Largura automática */
