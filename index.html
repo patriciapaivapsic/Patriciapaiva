@@ -11,18 +11,25 @@
             theme: {
                 extend: {
                     colors: {
-                        // Nova Paleta de cores: #D0CFB8, #95B4AA, #678863, #C8DDD1
-                        'patricia-sandstone': '#D0CFB8', // Sandstone (para fundo principal e elementos claros)
-                        'patricia-vintage-seagrass': '#95B4AA', // Vintage Seagrass (para botões de ação e elementos de destaque)
-                        'patricia-smoky-khaki': '#678863', // Smoky Khaki (para textos e elementos sóbrios)
-                        'patricia-soft-jade': '#C8DDD1', // Soft Jade (para fundos de chat e elementos secundários) - Mantido, pois é mais cinza/claro
-                        'patricia-text': '#444', // Cor de texto principal (um cinza escuro para legibilidade)
-                        'patricia-heading': '#000', // Cor para títulos principais (PRETO)
-                        'patricia-subheading': '#444', // Cor para subtítulos/descrições (MAIS ESCURA)
-                        // Cores para ícones flutuantes (Instagram mantido, WhatsApp de volta para verde)
-                         'whatsapp-float': '#25D366', // Verde para WhatsApp flutuante
-                         'instagram-float': '#A66C8F', // Tom de rosa/roxo para Instagram (mantido)
-                         'email-float': '#777', // Cor para ícone de Email flutuante (cinza)
+                        // Nova Paleta de cores da imagem (Versão 2)
+                        'palette2-light-bg': '#F0F0F0', // Fundo Claro
+                        'palette2-light-brown': '#D4C1B0', // Bege Claro
+                        'palette2-medium-brown': '#C58940', // Marrom/Laranja Médio
+                        'palette2-light-green': '#8B9C7E', // Verde Claro
+                        'palette2-dark-green': '#4A5D42', // Verde Escuro
+                        'palette2-black': '#000000', // Preto
+
+                        // Cores para ícones flutuantes (mantidas ou ajustadas se necessário)
+                         'whatsapp-float': '#25D366', // Mantido o verde WhatsApp padrão para reconhecimento
+                         'instagram-float': '#A66C8F', // Mantido o tom de rosa/roxo
+                         'email-float': '#777', // Mantido o cinza
+
+                         // Cores para botões específicos (ajustadas para a nova paleta)
+                         'whatsapp-button-color': '#25D366', // Mantido o verde WhatsApp
+                         'whatsapp-button-darker': '#128751', // Mantido o verde WhatsApp mais escuro
+                         'instagram-button-color': '#A66C8F', // Mantido a cor Instagram
+                         'writer-button-color': '#C58940', // Usando Marrom/Laranja Médio para botão Escritora
+                         'writer-button-darker': '#a47035', // Marrom/Laranja Médio mais escuro
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'], // Fonte principal Inter
@@ -38,9 +45,10 @@
         /* Estilos personalizados adicionais */
         body {
             font-family: 'Inter', sans-serif; /* Aplica a fonte principal */
-            color: var(--patricia-text); /* Cor de texto padrão */
+            color: var(--palette2-dark-green); /* Cor de texto padrão - usando o verde escuro */
             line-height: 1.6;
-            background: linear-gradient(to bottom right, var(--patricia-sandstone), #c0bfa8); /* Gradiente suave no fundo com nova cor */
+            /* Usando Light Green para o fundo do body, com um gradiente sutil */
+            background: linear-gradient(to bottom right, var(--palette2-light-green), #7a8a70);
             display: flex;
             flex-direction: column; /* Para alinhar o rodapé ao final */
             justify-content: flex-start; /* Alinhar ao topo */
@@ -52,19 +60,23 @@
 
         /* Usando variáveis CSS para as novas cores */
          :root {
-            --patricia-sandstone: #D0CFB8;
-            --patricia-vintage-seagrass: #95B4AA;
-            --patricia-smoky-khaki: #678863;
-            --patricia-soft-jade: #C8DDD1;
-            --patricia-text: #444; /* Cor de texto mais escura */
-            /* Variáveis para os tons de verde do WhatsApp (revertido) */
+            --palette2-light-bg: #F0F0F0;
+            --palette2-light-brown: #D4C1B0;
+            --palette2-medium-brown: #C58940;
+            --palette2-light-green: #8B9C7E;
+            --palette2-dark-green: #4A5D42;
+            --palette2-black: #000000;
+
+            /* Variáveis para os tons de verde do WhatsApp e outros botões */
             --whatsapp-green: #25D366; /* Verde padrão do WhatsApp */
             --whatsapp-green-darker: #128751; /* Verde mais escuro para hover */
+            --instagram-color: #A66C8F; /* Cor Instagram (mantida) */
+             --email-float-color: #777; /* Cor cinza para Email flutuante */
          }
 
 
         .linktree-container {
-            background-color: #ffffff; /* Fundo branco para o container */
+            background-color: var(--palette2-light-bg); /* Fundo claro para o container */
             padding: 40px; /* Padding aumentado */
             border-radius: 20px; /* Bordas mais arredondadas */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra mais proeminente */
@@ -84,7 +96,7 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 25px; /* Espaço maior abaixo da foto */
-            border: 5px solid var(--patricia-vintage-seagrass); /* Borda com nova cor */
+            border: 5px solid var(--palette2-medium-brown); /* Borda com Marrom/Laranja Médio */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
@@ -92,23 +104,14 @@
             font-family: 'Lora', serif;
             font-size: 3.2rem; /* Tamanho do título AUMENTADO */
             font-weight: 700;
-            color: #000; /* Cor do título PRETO */
+            color: var(--palette2-dark-green); /* Cor do título Verde Escuro */
             margin-bottom: 8px; /* Espaço ajustado */
         }
 
         .description {
             font-size: 1.1rem; /* Tamanho da descrição aumentado */
-            color: var(--patricia-text); /* Cor da descrição MAIS ESCURA (usando a variável de texto principal) */
+            color: var(--palette2-dark-green); /* Cor da descrição Verde Escuro */
             margin-bottom: 20px; /* Espaço ajustado para a bio vir abaixo */
-            line-height: 1.6;
-        }
-
-        /* Estilo para a seção de Bio */
-        .bio-section {
-            text-align: left; /* Alinhar texto da bio à esquerda */
-            margin-bottom: 35px; /* Espaço maior abaixo da bio */
-            color: var(--patricia-text);
-            font-size: 1rem;
             line-height: 1.6;
         }
 
@@ -117,7 +120,8 @@
             display: flex; /* Usar flexbox para ícone e texto */
             align-items: center;
             justify-content: center; /* Centralizar conteúdo */
-            background: linear-gradient(to right, var(--patricia-vintage-seagrass), #85a59b); /* Gradiente com nova cor */
+            /* Gradiente padrão para a maioria dos botões - usando Dark Green */
+            background: linear-gradient(to right, var(--palette2-dark-green), #3c4d36);
             color: white;
             font-weight: 600;
             padding: 18px 25px; /* Padding aumentado para botões */
@@ -131,7 +135,7 @@
         }
 
         .btn-option:hover {
-            background: linear-gradient(to right, #85a59b, #76968c); /* Gradiente mais escuro no hover */
+            background: linear-gradient(to right, #3c4d36, #303e2b); /* Gradiente mais escuro no hover */
             transform: translateY(-3px); /* Efeito de "levantar" no hover */
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
         }
@@ -141,12 +145,12 @@
              font-size: 1.3rem; /* Tamanho do ícone ajustado */
          }
 
-        /* Estilo específico para o botão de Escritora (usando Smoky Khaki) */
+        /* Estilo específico para o botão de Escritora (usando Marrom/Laranja Médio) */
         .btn-option.writer-button {
-             background: linear-gradient(to right, var(--patricia-smoky-khaki), #5a7a55); /* Gradiente com nova cor */
+             background: linear-gradient(to right, var(--palette2-medium-brown), var(--writer-button-darker)); /* Gradiente com nova cor */
         }
          .btn-option.writer-button:hover {
-             background: linear-gradient(to right, #5a7a5ki, #4d6c4a); /* Gradiente mais escuro */
+             background: linear-gradient(to right, var(--writer-button-darker), #8c5d2a); /* Gradiente mais escuro */
          }
 
          /* Estilo específico para o botão de WhatsApp (VERDE NOVAMENTE) */
@@ -169,7 +173,7 @@
 
         /* Estilos para a seção Escritora */
         .writer-section {
-            background-color: #ffffff; /* Fundo branco */
+            background-color: var(--palette2-light-bg); /* Fundo claro */
             padding: 30px; /* Padding ajustado */
             border-radius: 15px; /* Bordas arredondadas */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -181,11 +185,11 @@
             font-family: 'Lora', serif;
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: var(--patricia-smoky-khaki); /* Nova cor */
+            color: var(--palette2-dark-green); /* Verde Escuro */
         }
         .writer-section p {
             font-size: 1rem;
-            color: var(--patricia-text);
+            color: var(--palette2-dark-green); /* Verde Escuro */
             margin-bottom: 20px;
             line-height: 1.6;
             max-width: 600px;
@@ -207,12 +211,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 85px; /* Tamanho do círculo AUMENTADO */
-            height: 85px; /* Tamanho do círculo AUMENTADO */
+            width: 60px; /* Tamanho do círculo REDUZIDO */
+            height: 60px; /* Tamanho do círculo REDUZIDO */
             border-radius: 50%; /* Forma de círculo */
             color: white;
-            font-size: 4rem; /* Tamanho do ícone AUMENTADO */
-            margin-bottom: 22px; /* Espaço entre os ícones AUMENTADO */
+            font-size: 2.5rem; /* Tamanho do ícone REDUZIDO */
+            margin-bottom: 10px; /* Espaço entre os ícones REDUZIDO */
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -229,20 +233,20 @@
              color: white; /* Cor do ícone branca */
         }
         .email-float-linktree {
-            background-color: var(--email-float); /* Cor cinza para Email flutuante */
+            background-color: var(--email-float-color); /* Cor cinza para Email flutuante */
             color: white; /* Cor do ícone branca */
         }
 
 
         /* Estilos para o Chat por Tópico Expansível */
         .topic-chat-container {
-            background-color: #f9f9f9; /* Fundo leve para o chat, similar à imagem */
+            background-color: var(--palette2-light-brown); /* Fundo do chat (Bege Claro) */
             border: 1px solid #e0e0e0; /* Borda sutil */
             border-radius: 10px;
             padding: 15px;
             margin-top: 15px;
             text-align: left;
-            color: var(--patricia-text);
+            color: var(--palette2-dark-green); /* Texto do chat (Dark Green) */
             font-size: 0.95rem;
             line-height: 1.5;
             display: none; /* Inicialmente escondido */
@@ -257,7 +261,7 @@
 
         .topic-chat-container .chat-header {
             font-weight: 700;
-            color: var(--patricia-smoky-khaki); /* Cor do cabeçalho do chat */
+            color: var(--palette2-dark-green); /* Cor do cabeçalho do chat (Dark Green) */
             margin-bottom: 10px;
             border-bottom: 1px solid #eee;
             padding-bottom: 5px;
@@ -269,7 +273,7 @@
         .topic-chat-container .chat-close-btn {
             background: none;
             border: none;
-            color: var(--patricia-smoky-khaki); /* Cor do botão fechar */
+            color: var(--palette2-dark-green); /* Cor do botão fechar (Dark Green) */
             font-size: 1.2rem;
             cursor: pointer;
         }
@@ -301,13 +305,13 @@
         }
 
         .topic-chat-container .message.bot {
-            background-color: var(--patricia-sandstone); /* Nova cor para mensagens do bot */
-            color: var(--patricia-text);
+            background-color: var(--palette2-light-bg); /* Cor para mensagens do bot (Fundo Claro) */
+            color: var(--palette2-dark-green); /* Texto do bot (Dark Green) */
         }
 
         .topic-chat-container .message.user {
             align-self: flex-end; /* Alinha mensagens do usuário para a direita */
-            background-color: var(--patricia-vintage-seagrass); /* Nova cor para mensagens do usuário */
+            background-color: var(--palette2-medium-brown); /* Cor para mensagens do usuário (Marrom/Laranja Médio) */
             color: white;
         }
 
@@ -327,8 +331,8 @@
 
 
         .topic-chat-container .option-button-small {
-            background-color: #e0e0e0; /* Fundo cinza claro para os botões de pergunta, similar à imagem */
-            color: var(--patricia-text); /* Cor do texto dos botões de pergunta */
+            background-color: var(--palette2-light-bg); /* Fundo claro para os botões de pergunta */
+            color: var(--palette2-dark-green); /* Cor do texto dos botões de pergunta (Dark Green) */
             padding: 10px 12px; /* Padding ajustado */
             border-radius: 8px; /* Bordas arredondadas */
             border: none; /* Sem borda */
@@ -341,12 +345,12 @@
         }
 
         .topic-chat-container .option-button-small:hover {
-             background-color: #ccc; /* Cinza mais escuro no hover */
+             background-color: #e0e0e0; /* Cinza mais escuro no hover */
         }
 
         /* Estilo para o combo de resposta */
         .answer-combo {
-            background-color: var(--patricia-soft-jade); /* Cor de fundo para o combo de resposta - Mantido */
+            background-color: var(--palette2-light-green); /* Cor de fundo para o combo de resposta (Verde Claro) */
             border: 1px solid #d0d0d0;
             border-radius: 8px;
             padding: 15px;
@@ -361,11 +365,11 @@
 
         .answer-combo .question-text {
             font-weight: 600;
-            color: var(--patricia-smoky-khaki); /* Cor da pergunta no combo */
+            color: var(--palette2-dark-green); /* Cor da pergunta no combo (Dark Green) */
         }
 
         .answer-combo .answer-text {
-            color: var(--patricia-text); /* Cor da resposta no combo */
+            color: var(--palette2-dark-green); /* Cor da resposta no combo (Dark Green) */
             /* Removido overflow-y e max-height */
         }
 
@@ -391,8 +395,8 @@
         }
 
         .answer-combo .close-chat-btn-inline {
-            background-color: #ffffff; /* Fundo branco */
-            color: var(--patricia-text); /* Cor do texto */
+            background-color: var(--palette2-light-bg); /* Fundo branco */
+            color: var(--palette2-dark-green); /* Cor do texto (Dark Green) */
             padding: 5px 10px; /* Padding menor para botão pequeno */
             border-radius: 5px;
             border: 1px solid #ccc; /* Borda sutil para botões brancos */
@@ -407,13 +411,13 @@
         }
 
         .answer-combo .close-chat-btn-inline:hover {
-             background-color: #f0f0f0; /* Cinza muito claro no hover */
+             background-color: #e0e0e0; /* Cinza muito claro no hover */
              border-color: #b3b3b3; /* Borda mais escura no hover */
         }
 
         .answer-combo .whatsapp-icon-link-combo {
              color: var(--whatsapp-green); /* Cor Verde para o ícone WhatsApp no combo */
-             font-size: 2rem; /* Tamanho do ícone */
+             font-size: 1.5rem; /* Tamanho do ícone REDUZIDO */
              transition: color 0.3s ease;
         }
 
@@ -451,20 +455,20 @@
 
          /* Estilo para o Cartão de Visita Eletrônico dentro do chat */
         .business-card {
-            background-color: var(--patricia-sandstone); /* Fundo claro para o cartão */
+            background-color: var(--palette2-light-bg); /* Fundo claro para o cartão */
             border: 1px solid #d0d0d0;
             border-radius: 8px;
             padding: 15px;
             margin-top: 10px;
             text-align: center;
-            color: var(--patricia-text);
+            color: var(--palette2-dark-green); /* Texto do cartão (Dark Green) */
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .business-card h4 {
             font-weight: 700;
             margin-bottom: 10px;
-            color: var(--patricia-smoky-khaki);
+            color: var(--palette2-dark-green); /* Cor do título do cartão (Dark Green) */
         }
 
         .business-card p {
@@ -473,14 +477,14 @@
         }
 
         .business-card a {
-            color: var(--patricia-vintage-seagrass); /* Cor de link */
+            color: var(--palette2-medium-brown); /* Cor de link (Marrom/Laranja Médio) */
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
         }
 
         .business-card a:hover {
-            color: #76968c; /* Cor de link no hover */
+            color: #a47035; /* Cor de link no hover (Marrom/Laranja Médio mais escuro) */
             text-decoration: underline;
         }
 
@@ -524,10 +528,10 @@
                  right: 15px;
              }
              .floating-icon-linktree {
-                 width: 75px; /* Ajustado para mobile */
-                 height: 75px; /* Ajustado para mobile */
-                 font-size: 3.5rem; /* Ajustado para mobile */
-                 margin-bottom: 12px; /* Ajustado para mobile */
+                 width: 50px; /* Ajustado para mobile REDUZIDO */
+                 height: 50px; /* Ajustado para mobile REDUZIDO */
+                 font-size: 2rem; /* Ajustado para mobile REDUZIDO */
+                 margin-bottom: 8px; /* Ajustado para mobile REDUZIDO */
              }
              .topic-chat-container {
                  padding: 10px;
@@ -571,10 +575,10 @@
         <div class="container linktree-container">
             <img src="https://media.licdn.com/dms/image/v2/C4D03AQHoy6HE90-9cg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1517058550993?e=1753315200&v=beta&t=CEjGdRw5vohgyYlXYgRTlTC5nh7YD8nlrXwpB2CzB5o" alt="Foto de Patrícia Paiva" class="profile-img mx-auto">
 
-            <h1 class="text-patricia-heading">
+            <h1 class="text-palette2-dark-green">
                 Patrícia Paiva
             </h1>
-            <p class="description text-patricia-subheading">
+            <p class="description text-palette2-dark-green">
                 Psicóloga Clínica, Hipnoterapeuta e Escritora
             </p>
 
@@ -592,9 +596,6 @@
                     <button class="option-button-small" data-question-index="2">Cartão de Visita Eletrônico</button>
                 </div>
                  </div>
-
-            <a href="https://wa.me/559884574134" target="_blank" class="btn-option whatsapp-button"><i class="fab fa-whatsapp"></i> WhatsApp para Contato</a>
-            <a href="https://www.instagram.com/patricia.paiva.391/" target="_blank" class="btn-option instagram-button"><i class="fab fa-instagram"></i> Siga no Instagram</a>
 
             <button class="btn-option" data-topic="terapia"><i class="fas fa-user"></i> Terapia Individual</button>
             <div class="topic-chat-container" id="chat-terapia">
@@ -724,20 +725,20 @@
 
         </div> </section>
 
-    <footer class="bg-patricia-dark-blue py-6 text-white text-center">
+    <footer class="bg-palette2-dark-green py-6 text-white text-center">
         <div class="container">
             <p>&copy; 2024 Patrícia Paiva. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <div class="floating-icons-linktree">
-        <a href="https://wa.me/559884574134" target="_blank" class="floating-icon whatsapp-float-linktree">
+        <a href="https://wa.me/559884574134" target="_blank" class="floating-icon-linktree whatsapp-float-linktree">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="https://www.instagram.com/patricia.paiva.391/" target="_blank" class="floating-icon instagram-float-linktree">
+        <a href="https://www.instagram.com/patricia.paiva.391/" target="_blank" class="floating-icon-linktree instagram-float-linktree">
             <i class="fab fa-instagram"></i>
         </a>
-        <a href="mailto:seuemail@example.com" class="floating-icon email-float-linktree">
+        <a href="mailto:seuemail@example.com" class="floating-icon-linktree email-float-linktree">
             <i class="fas fa-envelope"></i>
         </a>
     </div>
@@ -756,7 +757,7 @@
                 title: "Sobre Patrícia Paiva",
                 questions: [
                     { q: "Minha Bio", a: "Acredito no cuidado integral do ser humano — mente, corpo e espírito. Com base na Psicologia, na saúde mental e na espiritualidade, ajudo pessoas a se reconectarem consigo mesmas, encontrando equilíbrio, propósito e leveza para viver com mais sentido." },
-                    { q: "Formação e Experiência", a: `Sou Psicóloga Clínica, Hipnoterapeuta e Escritora. Tenho experiência em [Mencione áreas de experiência relevantes]. Você pode ver meu perfil completo no LinkedIn: <a href="${linkedinUrl}" target="_blank" style="color: var(--patricia-vintage-seagrass); text-decoration: underline; font-weight: 600;">Perfil LinkedIn</a>` }, // Adicionado link do LinkedIn aqui
+                    { q: "Formação e Experiência", a: `Sou Psicóloga Clínica, Hipnoterapeuta e Escritora. Tenho experiência em [Mencione áreas de experiência relevantes]. Você pode ver meu perfil completo no LinkedIn: <a href="${linkedinUrl}" target="_blank" style="color: var(--palette2-medium-brown); text-decoration: underline; font-weight: 600;">Perfil LinkedIn</a>` }, // Adicionado link do LinkedIn aqui
                     { q: "Cartão de Visita Eletrônico", a: `
                         <div class="business-card">
                             <h4>Patrícia Paiva</h4>
