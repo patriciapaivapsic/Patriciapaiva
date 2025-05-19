@@ -37,6 +37,9 @@
 
                          /* Nova variável para o fundo cinza claro do combo do livro */
                          'combo-light-gray': '#e0e0e0', /* Um cinza claro para o fundo do combo */
+
+                          /* Nova variável para o fundo do combo de agenda */
+                         'agenda-combo-bg': '#D4C1B0', /* Usando o Bege Claro da paleta */
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'], // Fonte principal Inter
@@ -86,6 +89,9 @@
 
              /* Nova variável para o fundo cinza claro do combo do livro */
              --combo-light-gray: #e0e0e0; /* Um cinza claro para o fundo do combo */
+
+              /* Nova variável para o fundo do combo de agenda */
+             --agenda-combo-bg: #D4C1B0; /* Usando o Bege Claro da paleta */
          }
 
 
@@ -303,10 +309,11 @@
              max-height: 200px; /* Manter altura máxima para a lista de perguntas */
         }
 
-         /* Estilo específico para o corpo do chat quando o combo de resposta está ativo */
-         .topic-chat-container .chat-body.combo-active {
-             overflow-y: visible; /* Remover scroll quando o combo está ativo */
-             max-height: none; /* Remover altura máxima quando o combo está ativo */
+         /* Estilo específico para o corpo do chat quando o combo de resposta está ativo ou é o formulário de agenda */
+         .topic-chat-container .chat-body.combo-active,
+         .topic-chat-container .chat-body.agenda-form-active {
+             overflow-y: visible; /* Remover scroll */
+             max-height: none; /* Remover altura máxima */
          }
 
 
@@ -364,8 +371,8 @@
 
         /* Estilo para o combo de resposta */
         .answer-combo {
-            /* Alterado para cinza claro */
-            background-color: var(--combo-light-gray); /* Cor de fundo para o combo de resposta (Cinza Claro) */
+            /* Cor de fundo padrão para o combo de resposta */
+            background-color: var(--palette2-light-green); /* Verde Claro */
             border: 1px solid #d0d0d0;
             border-radius: 8px;
             padding: 15px;
@@ -377,6 +384,17 @@
             gap: 10px; /* Espaço entre os itens do combo */
             /* Removido max-height para permitir que o combo se expanda */
         }
+
+         /* Estilo específico para o combo do livro (cinza claro) */
+         .answer-combo.book-combo {
+             background-color: var(--combo-light-gray); /* Cinza Claro */
+         }
+
+         /* Estilo específico para o combo de agenda (bege claro) */
+         .answer-combo.agenda-combo {
+             background-color: var(--agenda-combo-bg); /* Bege Claro */
+         }
+
 
         .answer-combo .question-text {
             font-weight: 600;
@@ -516,6 +534,51 @@
              font-size: 0.9rem; /* Tamanho da fonte do texto do rodapé */
          }
 
+         /* Estilos para o formulário de agendamento */
+        .agenda-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Espaço entre os campos */
+            margin-top: 10px;
+        }
+
+        .agenda-form label {
+            font-weight: 600;
+            color: var(--palette2-dark-green); /* Cor do label (Dark Green) */
+            font-size: 0.9rem;
+        }
+
+        .agenda-form input[type="text"],
+        .agenda-form input[type="email"],
+        .agenda-form input[type="date"],
+        .agenda-form select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: var(--palette2-black); /* Cor do texto do input PRETO */
+            background-color: var(--palette2-light-bg); /* Fundo claro para inputs */
+            width: 100%; /* Ocupa a largura total */
+            box-sizing: border-box; /* Inclui padding na largura */
+        }
+
+        .agenda-form button[type="submit"] {
+            background-color: var(--palette2-dark-green); /* Botão Enviar Dark Green */
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .agenda-form button[type="submit"]:hover {
+             background-color: #3c4d36; /* Dark Green mais escuro no hover */
+        }
+
 
          /* Responsividade */
         @media (max-width: 768px) {
@@ -621,6 +684,18 @@
                     <button class="option-button-small" data-question-index="2">Cartão de Visita Eletrônico</button>
                 </div>
                  </div>
+
+             <button class="btn-option" data-topic="marcar-agenda"><i class="fas fa-calendar-alt"></i> Marcar Consulta</button>
+             <div class="topic-chat-container" id="chat-marcar-agenda">
+                 <div class="chat-header">
+                     <span>Marcar Consulta</span>
+                     <button class="chat-close-btn">&times;</button>
+                 </div>
+                 <div class="chat-body">
+                     </div>
+                 <div class="chat-options hidden">
+                     </div>
+             </div>
 
             <button class="btn-option" data-topic="terapia"><i class="fas fa-user"></i> Terapia Individual</button>
             <div class="topic-chat-container" id="chat-terapia">
@@ -748,6 +823,7 @@
                      </div>
             </div>
 
+
         </div> </section>
 
     <footer class="bg-palette2-dark-green py-6 text-white text-center">
@@ -776,7 +852,7 @@
         const emailAddress = 'seuemail@example.com'; // Endereço de Email da Patrícia
         const linkedinUrl = 'https://www.linkedin.com/in/patr%C3%ADcia-paiva-5b3b65144/'; // URL do LinkedIn da Patrícia
 
-        // Conteúdo dos chats por tópico (ajustado para 8 perguntas)
+        // Conteúdo dos chats por tópico (ajustado para 8 perguntas + Agendamento)
         const topicContent = {
             "quem-sou": { // Novo tópico Quem Sou
                 title: "Sobre Patrícia Paiva",
@@ -794,6 +870,37 @@
                     `}, // Cartão de Visita Eletrônico em HTML
                 ]
             },
+            "marcar-agenda": { // Tópico Marcar Agenda (agora Marcar Consulta)
+                 title: "Marcar Consulta",
+                 form: `
+                     <form class="agenda-form" id="agendaForm">
+                         <p style="color: var(--palette2-dark-green); font-size: 0.95rem; margin-bottom: 15px;">Preencha os dados abaixo para solicitar um agendamento:</p>
+                         <div>
+                             <label for="nome">Nome:</label>
+                             <input type="text" id="nome" name="nome" required>
+                         </div>
+                         <div>
+                             <label for="email">Email:</label>
+                             <input type="email" id="email" name="email" required>
+                         </div>
+                         <div>
+                             <label for="data">Data Preferencial:</label>
+                             <input type="date" id="data" name="data" required>
+                         </div>
+                         <div>
+                             <label for="hora">Hora Preferencial (18:00 às 22:00):</label>
+                             <select id="hora" name="hora" required>
+                                 <option value="">Selecione um horário</option>
+                                 <option value="18:00">18:00</option>
+                                 <option value="19:00">19:00</option>
+                                 <option value="20:00">20:00</option>
+                                 <option value="21:00">21:00</option>
+                             </select>
+                         </div>
+                         <button type="submit">Enviar Solicitação</button>
+                     </form>
+                 `
+             },
             "terapia": {
                 title: "Sobre Terapia Individual", // Título atualizado
                 questions: [
@@ -830,7 +937,7 @@
                      { q: "A avaliação garante a aprovação para o porte de arma?", a: "A avaliação é uma etapa do processo. A aprovação final depende do cumprimento de todos os requisitos e da análise da Polícia Federal." },
                      { q: "Em quais casos a avaliação pode resultar em inaptidão?", a: "Condições psicológicas que comprometam o julgamento, controle de impulsos ou estabilidade emocional podem levar à inaptidão. A avaliação é individualizada." },
                      { q: "Posso fazer a avaliação mesmo sem ter experiência prévia com armas?", a: "Sim, a avaliação foca nas condições psicológicas, não na experiência prévia com armas. A instrução de tiro é uma etapa separada." },
-                     { q: "Como agendar a avaliação psicológica?", a: "Você pode agendar sua avaliação diretamente entrando em contato via WhatsApp." }
+                     { q: "Como agendar a avaliação psicológica para porte de arma?", a: "Você pode agendar sua avaliação diretamente entrando em contato via WhatsApp." }
                  ]
             },
             "saude-mental": {
@@ -899,96 +1006,173 @@
                     const chatOptions = targetChatContainer.querySelector('.chat-options');
                     const chatCloseBtn = targetChatContainer.querySelector('.chat-close-btn');
 
-                    // Preencher o chat do tópico
-                    chatHeader.textContent = content.title;
-                    chatBody.innerHTML = ''; // Limpar mensagens e combos anteriores
+                    // Limpar mensagens e combos anteriores
+                    chatBody.innerHTML = '';
                     chatOptions.innerHTML = ''; // Limpar opções anteriores
 
-                    content.questions.forEach((item, index) => {
-                        const questionButton = document.createElement('button');
-                        questionButton.classList.add('option-button-small');
-                        questionButton.textContent = item.q;
-                        questionButton.dataset.questionIndex = index; // Armazena o índice da pergunta
-                        chatOptions.appendChild(questionButton);
+                    // Preencher o chat do tópico
+                    chatHeader.textContent = content.title;
 
-                        // Adicionar listener para as perguntas dentro deste chat
-                        questionButton.addEventListener('click', function() {
-                            const qIndex = this.dataset.questionIndex;
-                            const userQ = this.textContent;
-                            const botA = content.questions[qIndex].a;
+                    if (content.form) {
+                        // Se o tópico tem um formulário, exibe o formulário
+                        chatBody.innerHTML = content.form;
+                        chatOptions.classList.add('hidden'); // Esconde as opções quando há formulário
+                        chatBody.classList.add('agenda-form-active'); // Adiciona classe para remover scroll
 
-                            // Esconder as opções de pergunta
-                            chatOptions.classList.add('hidden');
-                            chatBody.innerHTML = ''; // Limpar o corpo antes de adicionar o novo combo
+                        // Adicionar listener para o formulário de agendamento
+                        const agendaForm = targetChatContainer.querySelector('#agendaForm');
+                        if (agendaForm) {
+                            agendaForm.addEventListener('submit', function(event) {
+                                event.preventDefault(); // Previne o envio padrão do formulário
 
-                            // Criar o novo combo de resposta
-                            const answerCombo = document.createElement('div');
-                            answerCombo.classList.add('answer-combo');
+                                const nome = document.getElementById('nome').value;
+                                const email = document.getElementById('email').value;
+                                const data = document.getElementById('data').value;
+                                const hora = document.getElementById('hora').value;
 
-                            const questionText = document.createElement('p');
-                            questionText.classList.add('question-text');
-                            questionText.textContent = userQ;
-                            answerCombo.appendChild(questionText);
+                                // Simula o envio de email (substituir por lógica real de envio)
+                                const subject = `Solicitação de Agendamento - ${nome}`;
+                                const body = `Nome: ${nome}\nEmail: ${email}\nData Preferencial: ${data}\nHora Preferencial: ${hora}`;
 
-                            const answerText = document.createElement('div'); // Usar div para permitir HTML
-                            answerText.classList.add('answer-text');
-                            answerText.innerHTML = botA; // Resposta pode conter HTML (como o cartão de visita)
-                            answerCombo.appendChild(answerText);
+                                // Exemplo simples: exibe os dados no console e uma mensagem de sucesso
+                                console.log("Dados do Agendamento:", { nome, email, data, hora });
+                                console.log("Assunto do Email:", subject);
+                                console.log("Corpo do Email:", body);
 
-                            // Rodapé do combo com botões e WhatsApp
-                            const comboFooter = document.createElement('div');
-                            comboFooter.classList.add('combo-footer');
+                                // Adiciona uma mensagem de sucesso no chat
+                                const successMessage = document.createElement('div');
+                                successMessage.classList.add('message', 'bot');
+                                successMessage.innerHTML = `Obrigado(a), ${nome}! Sua solicitação de agendamento para ${data} às ${hora} foi enviada. Entrarei em contato em breve!`;
+                                chatBody.innerHTML = ''; // Limpa o formulário
+                                chatBody.appendChild(successMessage);
 
-                            const buttonGroup = document.createElement('div');
-                            buttonGroup.classList.add('button-group');
+                                 // Adiciona um botão "Voltar" após o envio
+                                const backButtonAfterSubmit = document.createElement('button');
+                                backButtonAfterSubmit.classList.add('close-chat-btn-inline');
+                                backButtonAfterSubmit.textContent = 'Voltar';
+                                backButtonAfterSubmit.style.marginTop = '15px'; // Espaço acima do botão
+                                chatBody.appendChild(backButtonAfterSubmit);
 
-                            // Botão Voltar que agora fecha o chat
-                            const closeChatButton = document.createElement('button');
-                            closeChatButton.classList.add('close-chat-btn-inline');
-                            closeChatButton.textContent = 'Voltar'; // Botão Voltar para fechar o chat
-                            buttonGroup.appendChild(closeChatButton);
+                                backButtonAfterSubmit.addEventListener('click', function() {
+                                     targetChatContainer.style.display = 'none';
+                                     targetChatContainer.classList.remove('active');
+                                     chatOptions.classList.remove('hidden');
+                                     chatBody.innerHTML = '';
+                                     chatBody.classList.remove('combo-active');
+                                     chatBody.classList.remove('agenda-form-active'); // Remover classe
+                                });
 
-                            comboFooter.appendChild(buttonGroup); // Adicionar o grupo de botões ao rodapé do combo
+                                chatBody.classList.add('combo-active'); // Adicionar classe para remover scroll se necessário
+                                chatBody.scrollTop = chatBody.scrollHeight; // Rolar para a mensagem de sucesso
 
-                            const whatsappLinkCombo = document.createElement('a');
-                            whatsappLinkCombo.href = `https://wa.me/${whatsappNumber}`;
-                            whatsappLinkCombo.target = '_blank';
-                            whatsappLinkCombo.classList.add('whatsapp-icon-link-combo');
-                            whatsappLinkCombo.innerHTML = '<i class="fab fa-whatsapp"></i>';
-                            comboFooter.appendChild(whatsappLinkCombo); // Adicionar o ícone do WhatsApp ao rodapé do combo
-
-
-                            answerCombo.appendChild(comboFooter); // Adicionar o rodapé ao combo de resposta
-
-                            // Adicionar listener para o novo botão Voltar (fechar chat)
-                            closeChatButton.addEventListener('click', function() {
-                                 targetChatContainer.style.display = 'none'; // Esconde o container do chat
-                                 targetChatContainer.classList.remove('active');
-                                 chatOptions.classList.remove('hidden'); // Garante que as opções não fiquem escondidas ao fechar
-                                 chatBody.innerHTML = ''; // Resetar chat
-                                 chatBody.classList.remove('combo-active'); // Remover classe para restaurar scroll
+                                // Em um ambiente real, você usaria um serviço de backend para enviar o email.
+                                // Exemplo de link mailto (limitado pelo tamanho e funcionalidade):
+                                // window.location.href = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                             });
+                        }
 
-                            // Adicionar o combo de resposta ao corpo do chat
-                            chatBody.appendChild(answerCombo);
-                            chatBody.classList.add('combo-active'); // Adicionar classe para remover scroll
-                            chatBody.scrollTop = chatBody.scrollHeight; // Rolar para a nova resposta
+                    } else if (content.questions) {
+                        // Se o tópico tem perguntas, exibe as perguntas como botões
+                        chatOptions.classList.remove('hidden'); // Garante que as opções estejam visíveis
+                         chatBody.classList.remove('agenda-form-active'); // Remover classe se não for o formulário
+
+                        content.questions.forEach((item, index) => {
+                            const questionButton = document.createElement('button');
+                            questionButton.classList.add('option-button-small');
+                            questionButton.textContent = item.q;
+                            questionButton.dataset.questionIndex = index; // Armazena o índice da pergunta
+                            chatOptions.appendChild(questionButton);
+
+                            // Adicionar listener para as perguntas dentro deste chat
+                            questionButton.addEventListener('click', function() {
+                                const qIndex = this.dataset.questionIndex;
+                                const userQ = this.textContent;
+                                const botA = content.questions[qIndex].a;
+
+                                // Esconder as opções de pergunta
+                                chatOptions.classList.add('hidden');
+                                chatBody.innerHTML = ''; // Limpar o corpo antes de adicionar o novo combo
+
+                                // Criar o novo combo de resposta
+                                const answerCombo = document.createElement('div');
+                                answerCombo.classList.add('answer-combo');
+
+                                // Adiciona classe específica para o combo do livro se for o caso
+                                if (topic === 'girassois-vida') {
+                                     answerCombo.classList.add('book-combo');
+                                } else if (topic === 'marcar-agenda') {
+                                     answerCombo.classList.add('agenda-combo'); // Adiciona classe para o combo de agenda
+                                }
+
+
+                                const questionText = document.createElement('p');
+                                questionText.classList.add('question-text');
+                                questionText.textContent = userQ;
+                                answerCombo.appendChild(questionText);
+
+                                const answerText = document.createElement('div'); // Usar div para permitir HTML
+                                answerText.classList.add('answer-text');
+                                answerText.innerHTML = botA; // Resposta pode conter HTML (como o cartão de visita)
+                                answerCombo.appendChild(answerText);
+
+                                // Rodapé do combo com botões e WhatsApp
+                                const comboFooter = document.createElement('div');
+                                comboFooter.classList.add('combo-footer');
+
+                                const buttonGroup = document.createElement('div');
+                                buttonGroup.classList.add('button-group');
+
+                                // Botão Voltar que agora fecha o chat
+                                const closeChatButton = document.createElement('button');
+                                closeChatButton.classList.add('close-chat-btn-inline');
+                                closeChatButton.textContent = 'Voltar'; // Botão Voltar para fechar o chat
+                                buttonGroup.appendChild(closeChatButton);
+
+                                comboFooter.appendChild(buttonGroup); // Adicionar o grupo de botões ao rodapé do combo
+
+                                const whatsappLinkCombo = document.createElement('a');
+                                whatsappLinkCombo.href = `https://wa.me/${whatsappNumber}`;
+                                whatsappLinkCombo.target = '_blank';
+                                whatsappLinkCombo.classList.add('whatsapp-icon-link-combo');
+                                whatsappLinkCombo.innerHTML = '<i class="fab fa-whatsapp"></i>';
+                                comboFooter.appendChild(whatsappLinkCombo); // Adicionar o ícone do WhatsApp ao rodapé do combo
+
+
+                                answerCombo.appendChild(comboFooter); // Adicionar o rodapé ao combo de resposta
+
+                                // Adicionar listener para o novo botão Voltar (fechar chat)
+                                closeChatButton.addEventListener('click', function() {
+                                     targetChatContainer.style.display = 'none'; // Esconde o container do chat
+                                     targetChatContainer.classList.remove('active');
+                                     chatOptions.classList.remove('hidden'); // Garante que as opções não fiquem escondidas ao fechar
+                                     chatBody.innerHTML = ''; // Resetar chat
+                                     chatBody.classList.remove('combo-active'); // Remover classe para restaurar scroll
+                                     chatBody.classList.remove('agenda-form-active'); // Remover classe
+                                });
+
+                                // Adicionar o combo de resposta ao corpo do chat
+                                chatBody.appendChild(answerCombo);
+                                chatBody.classList.add('combo-active'); // Adicionar classe para remover scroll
+                                chatBody.scrollTop = chatBody.scrollHeight; // Rolar para a nova resposta
+                            });
                         });
-                    });
+                    }
+
 
                     // Alternar a visibilidade do chat clicado
                     if (targetChatContainer.style.display === 'none' || targetChatContainer.style.display === '') {
                         targetChatContainer.style.display = 'flex'; // Usar flex para layout interno
                          targetChatContainer.classList.add('active'); // Adicionar classe active
-                         chatOptions.classList.remove('hidden'); // Garante que as opções estejam visíveis ao abrir
-                         chatBody.innerHTML = ''; // Limpar o corpo ao abrir um novo chat
-                         chatBody.classList.remove('combo-active'); // Remover classe ao abrir para garantir scroll inicial
+                         // chatOptions.classList.remove('hidden'); // Garante que as opções estejam visíveis ao abrir (já tratado acima)
+                         // chatBody.innerHTML = ''; // Limpar o corpo ao abrir um novo chat (já tratado acima)
+                         // chatBody.classList.remove('combo-active'); // Remover classe ao abrir para garantir scroll inicial (já tratado acima)
                     } else {
                         targetChatContainer.style.display = 'none';
                          targetChatContainer.classList.remove('active'); // Remover classe active
                          chatOptions.classList.remove('hidden'); // Garante que as opções não fiquem escondidas ao fechar
                          chatBody.innerHTML = ''; // Resetar chat
                          chatBody.classList.remove('combo-active'); // Remover classe ao fechar
+                         chatBody.classList.remove('agenda-form-active'); // Remover classe
                     }
 
                     // Adicionar listener para o botão fechar deste chat específico
@@ -998,6 +1182,7 @@
                          chatOptions.classList.remove('hidden'); // Garante que as opções não fiquem escondidas ao fechar
                          chatBody.innerHTML = ''; // Resetar chat
                          chatBody.classList.remove('combo-active'); // Remover classe ao fechar
+                         chatBody.classList.remove('agenda-form-active'); // Remover classe
                     }
                 }
             });
@@ -1025,6 +1210,7 @@
                       if(chatBody) {
                           chatBody.innerHTML = ''; // Resetar chat
                           chatBody.classList.remove('combo-active'); // Remover classe
+                          chatBody.classList.remove('agenda-form-active'); // Remover classe
                       }
                  }
              });
