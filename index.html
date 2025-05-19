@@ -116,6 +116,15 @@
              /* Nova cor cinza para o fundo dos combos de resposta (mais claro) */
              --answer-combo-gray: #f2f2f2; /* Cinza mais claro */
              --answer-combo-gray-border: #e0e0e0; /* Borda um pouco mais escura */
+
+             /* Gradientes para os botões principais (TODOS VERDES) */
+             --gradient-green-base: linear-gradient(to right, var(--palette2-dark-green), var(--palette2-light-green)); /* Dark Green para Light Green */
+             --gradient-green-hover: linear-gradient(to right, #3c4d36, #7a8a70); /* Tons mais escuros para hover */
+
+             /* Gradiente para o botão de agendamento (AGORA MAIS ESCURO) */
+             --gradient-marcar-agenda: linear-gradient(to right, #6b4620, #8a5c2a); /* Tons mais escuros para o Medium Brown */
+             --gradient-marcar-agenda-hover: linear-gradient(to right, #52371a, #6b4620); /* Tons ainda mais escuros para hover */
+
          }
 
 
@@ -159,34 +168,56 @@
             line-height: 1.6;
         }
 
-        /* Estilo para botões de opção (usando novas cores com gradientes) */
+        /* Estilo base para botões de opção */
         .btn-option {
             display: flex; /* Usar flexbox para ícone e texto */
             align-items: center;
             justify-content: center; /* Centralizar conteúdo */
-            /* Gradiente padrão para a maioria dos botões - usando Dark Green */
-            background: linear-gradient(to right, var(--palette2-dark-green), #3c4d36);
             color: white;
             font-weight: 600;
             padding: 18px 25px; /* Padding aumentado para botões */
             border-radius: 12px; /* Bordas mais arredondadas nos botões */
             text-decoration: none;
             margin-bottom: 18px; /* Espaço maior entre botões */
-            transition: all 0.3s ease; /* Transição suave */
+            transition: all 0.3s ease; /* Transição suave para várias propriedades */
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Sombra nos botões */
             border: none;
             width: 100%; /* Define a largura total */
         }
 
-        .btn-option:hover {
-            background: linear-gradient(to right, #3c4d36, #303e2b); /* Gradiente mais escuro no hover */
-            transform: translateY(-3px); /* Efeito de "levantar" no hover */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-        }
-
          .btn-option i {
              margin-right: 12px; /* Espaço maior entre ícone e texto */
              font-size: 1.3rem; /* Tamanho do ícone ajustado */
+         }
+
+        /* Estilos com Gradiente Verde para TODOS os botões principais */
+        .btn-option.quem-sou,
+        .btn-option.terapia,
+        .btn-option.hipnoterapia,
+        .btn-option.porte-armas,
+        .btn-option.saude-mental,
+        .btn-option.espiritualidade {
+             background: var(--gradient-green-base);
+        }
+        .btn-option.quem-sou:hover,
+        .btn-option.terapia:hover,
+        .btn-option.hipnoterapia:hover,
+        .btn-option.porte-armas:hover,
+        .btn-option.saude-mental:hover,
+        .btn-option.espiritualidade:hover {
+             background: var(--gradient-green-hover);
+             transform: translateY(-3px);
+             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Estilo específico para o botão de Agendar (AGORA MAIS ESCURO) */
+         .btn-option.marcar-agenda {
+             background: var(--gradient-marcar-agenda);
+         }
+         .btn-option.marcar-agenda:hover {
+             background: var(--gradient-marcar-agenda-hover);
+             transform: translateY(-3px);
+             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
          }
 
         /* Estilo específico para o botão de Escritora (AGORA VERDE) */
@@ -195,6 +226,8 @@
         }
          .btn-option.writer-button:hover {
              background: linear-gradient(to right, var(--book-button-green-darker), #303e2b); /* Gradiente mais escuro */
+             transform: translateY(-3px);
+             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
          }
 
          /* Estilo específico para o botão de WhatsApp (VERDE) */
@@ -203,6 +236,8 @@
         }
          .btn-option.whatsapp-button:hover {
              background: linear-gradient(to right, var(--whatsapp-green-darker), #0e6b40); /* Gradiente Verde mais escuro */
+             transform: translateY(-3px);
+             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
          }
 
          /* Estilo específico para o botão de Instagram (mantido) */
@@ -212,6 +247,8 @@
          }
          .btn-option.instagram-button:hover {
               background: radial-gradient(circle at 30% 107%, #fce38a 0%, #fce38a 5%, #fc4a3a 45%, #c51a8d 60%, #234cc7 90%); /* Mantido */
+              transform: translateY(-3px);
+              box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
          }
 
 
@@ -284,7 +321,7 @@
 
         /* Estilos para o Chat por Tópico Expansível */
         .topic-chat-container {
-            background-color: var(--palette2-light-brown); /* Fundo do chat (Bege Claro) */
+            background-color: var(--palette2-light-brown); /* Fundo do chat (Beige Claro) */
             border: 1px solid #e0e0e0; /* Borda sutil */
             border-radius: 10px;
             padding: 15px;
@@ -701,7 +738,7 @@
                 Psicóloga Clínica, Hipnoterapeuta e Escritora
             </p>
 
-            <button class="btn-option" data-topic="quem-sou"><i class="fas fa-info-circle"></i> Quem Sou</button>
+            <button class="btn-option quem-sou" data-topic="quem-sou"><i class="fas fa-info-circle"></i> Quem Sou</button>
             <div class="topic-chat-container" id="chat-quem-sou">
                 <div class="chat-header">
                     <span>Sobre Patrícia Paiva</span>
@@ -716,7 +753,7 @@
                 </div>
                  </div>
 
-             <button class="btn-option" data-topic="marcar-agenda"><i class="fas fa-calendar-alt"></i> Marcar Consulta</button>
+             <button class="btn-option marcar-agenda" data-topic="marcar-agenda"><i class="fas fa-calendar-alt"></i> Marcar Consulta</button>
              <div class="topic-chat-container" id="chat-marcar-agenda">
                  <div class="chat-header">
                      <span>Marcar Consulta</span>
@@ -728,7 +765,7 @@
                      </div>
              </div>
 
-            <button class="btn-option" data-topic="terapia"><i class="fas fa-user"></i> Terapia Individual</button>
+            <button class="btn-option terapia" data-topic="terapia"><i class="fas fa-user"></i> Terapia Individual</button>
             <div class="topic-chat-container" id="chat-terapia">
                 <div class="chat-header">
                     <span>Sobre Terapia Individual</span>
@@ -748,7 +785,7 @@
                 </div>
                  </div>
 
-            <button class="btn-option" data-topic="hipnoterapia"><i class="fas fa-brain"></i> Descubra a Hipnoterapia</button>
+            <button class="btn-option hipnoterapia" data-topic="hipnoterapia"><i class="fas fa-brain"></i> Descubra a Hipnoterapia</button>
              <div class="topic-chat-container" id="chat-hipnoterapia">
                 <div class="chat-header">
                     <span>Sobre Hipnoterapia</span>
@@ -768,7 +805,7 @@
                 </div>
                  </div>
 
-            <button class="btn-option" data-topic="porte-armas"><i class="fas fa-shield-alt"></i> Convênio Polícia Federal</button>
+            <button class="btn-option porte-armas" data-topic="porte-armas"><i class="fas fa-shield-alt"></i> Convênio Polícia Federal</button>
              <div class="topic-chat-container" id="chat-porte-armas">
                 <div class="chat-header">
                     <span>Sobre Convênio Polícia Federal</span>
@@ -788,7 +825,7 @@
                 </div>
                  </div>
 
-            <button class="btn-option" data-topic="saude-mental"><i class="fas fa-heart"></i> Saúde Mental e Bem-Estar</button>
+            <button class="btn-option saude-mental" data-topic="saude-mental"><i class="fas fa-heart"></i> Saúde Mental e Bem-Estar</button>
              <div class="topic-chat-container" id="chat-saude-mental">
                 <div class="chat-header">
                     <span>Sobre Saúde Mental e Bem-Estar</span>
@@ -808,7 +845,7 @@
                 </div>
                  </div>
 
-             <button class="btn-option" data-topic="espiritualidade"><i class="fas fa-leaf"></i> Espiritualidade e Saúde</button>
+             <button class="btn-option espiritualidade" data-topic="espiritualidade"><i class="fas fa-leaf"></i> Espiritualidade e Saúde</button>
              <div class="topic-chat-container" id="chat-espiritualidade">
                 <div class="chat-header">
                     <span>Sobre Espiritualidade e Saúde</span>
@@ -870,10 +907,7 @@
         <a href="https://www.instagram.com/patricia.paiva.391/" target="_blank" class="floating-icon-linktree instagram-float-linktree">
             <i class="fab fa-instagram"></i>
         </a>
-        <a href="mailto:seuemail@example.com" class="floating-icon-linktree email-float-linktree">
-            <i class="fas fa-envelope"></i>
-        </a>
-    </div>
+        </div>
 
 
     <script>
@@ -896,9 +930,9 @@
                             <p>Psicóloga Clínica | Hipnoterapeuta | Escritora</p>
                             <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/${whatsappNumber}" target="_blank">${whatsappNumber}</a></p>
                             <p><i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/patricia.paiva.391/" target="_blank">@patricia.paiva.391</a></p>
-                            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:${emailAddress}">${emailAddress}</a></p>
+                            <p><i class="fab fa-whatsapp"></i> Contato WhatsApp: <a href="https://wa.me/${whatsappNumber}" target="_blank">${whatsappNumber}</a></p>
                             <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="${linkedinUrl}" target="_blank">Perfil LinkedIn</a></p> </div>
-                    `}, // Cartão de Visita Eletrônico em HTML
+                    `}, // Cartão de Visita Eletrônico em HTML - EMAIL ALTERADO PARA WHATSAPP
                 ]
             },
             "marcar-agenda": { // Tópico Marcar Agenda (agora Marcar Consulta)
@@ -911,8 +945,8 @@
                              <input type="text" id="nome" name="nome" required>
                          </div>
                          <div>
-                             <label for="email">Email:</label>
-                             <input type="email" id="email" name="email" required>
+                             <label for="whatsapp">Contato WhatsApp:</label>
+                             <input type="text" id="whatsapp" name="whatsapp" required>
                          </div>
                          <div>
                              <label for="data">Data Preferencial:</label>
@@ -1068,23 +1102,25 @@
                                 event.preventDefault(); // Previne o envio padrão do formulário
 
                                 const nome = document.getElementById('nome').value;
-                                const email = document.getElementById('email').value;
+                                // Alterado para pegar o valor do campo WhatsApp
+                                const whatsappContato = document.getElementById('whatsapp').value;
                                 const data = document.getElementById('data').value;
                                 const hora = document.getElementById('hora').value;
 
                                 // Simula o envio de email (substituir por lógica real de envio)
                                 const subject = `Solicitação de Agendamento - ${nome}`;
-                                const body = `Nome: ${nome}\nEmail: ${email}\nData Preferencial: ${data}\nHora Preferencial: ${hora}`;
+                                // Alterado para incluir o contato WhatsApp
+                                const body = `Nome: ${nome}\nContato WhatsApp: ${whatsappContato}\nData Preferencial: ${data}\nHora Preferencial: ${hora}`;
 
                                 // Exemplo simples: exibe os dados no console e uma mensagem de sucesso
-                                console.log("Dados do Agendamento:", { nome, email, data, hora });
+                                console.log("Dados do Agendamento:", { nome, whatsappContato, data, hora });
                                 console.log("Assunto do Email:", subject);
                                 console.log("Corpo do Email:", body);
 
                                 // Adiciona uma mensagem de sucesso no chat
                                 const successMessage = document.createElement('div');
                                 successMessage.classList.add('message', 'bot');
-                                successMessage.innerHTML = `Obrigado(a), ${nome}! Sua solicitação de agendamento para ${data} às ${hora} foi enviada. Entrarei em contato em breve!`;
+                                successMessage.innerHTML = `Obrigado(a), ${nome}! Sua solicitação de agendamento para ${data} às ${hora} foi enviada. Entrarei em contato em breve pelo WhatsApp.`;
                                 chatBody.innerHTML = ''; // Limpa o formulário
                                 chatBody.appendChild(successMessage);
 
