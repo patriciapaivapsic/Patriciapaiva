@@ -34,6 +34,9 @@
                          // Novas variáveis para o botão do livro (tons de verde)
                          'book-button-green': '#4A5D42', /* Usando o Dark Green da paleta */
                          'book-button-green-darker': '#3c4d36', /* Um pouco mais escuro para hover */
+
+                         /* Nova variável para o fundo cinza claro do combo do livro */
+                         'combo-light-gray': '#e0e0e0', /* Um cinza claro para o fundo do combo */
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'], // Fonte principal Inter
@@ -80,6 +83,9 @@
              /* Variáveis para o botão do livro (tons de verde) */
              --book-button-green: #4A5D42; /* Usando o Dark Green da paleta */
              --book-button-green-darker: #3c4d36; /* Um pouco mais escuro para hover */
+
+             /* Nova variável para o fundo cinza claro do combo do livro */
+             --combo-light-gray: #e0e0e0; /* Um cinza claro para o fundo do combo */
          }
 
 
@@ -358,7 +364,8 @@
 
         /* Estilo para o combo de resposta */
         .answer-combo {
-            background-color: var(--palette2-light-green); /* Cor de fundo para o combo de resposta (Verde Claro) */
+            /* Alterado para cinza claro */
+            background-color: var(--combo-light-gray); /* Cor de fundo para o combo de resposta (Cinza Claro) */
             border: 1px solid #d0d0d0;
             border-radius: 8px;
             padding: 15px;
@@ -499,7 +506,7 @@
         /* Estilo para o rodapé */
         footer {
             background-color: transparent; /* Fundo transparente */
-            color: var(--palette2-dark-green); /* Cor do texto do rodapé (Verde Escuro) */
+            color: var(--palette2-light-green); /* Cor do texto do rodapé (Verde Claro) */
             padding: 20px 0; /* Padding ajustado */
             text-align: center;
             width: 100%;
@@ -823,7 +830,7 @@
                      { q: "A avaliação garante a aprovação para o porte de arma?", a: "A avaliação é uma etapa do processo. A aprovação final depende do cumprimento de todos os requisitos e da análise da Polícia Federal." },
                      { q: "Em quais casos a avaliação pode resultar em inaptidão?", a: "Condições psicológicas que comprometam o julgamento, controle de impulsos ou estabilidade emocional podem levar à inaptidão. A avaliação é individualizada." },
                      { q: "Posso fazer a avaliação mesmo sem ter experiência prévia com armas?", a: "Sim, a avaliação foca nas condições psicológicas, não na experiência prévia com armas. A instrução de tiro é uma etapa separada." },
-                     { q: "Como agendar a avaliação psicológica para porte de arma?", a: "Você pode agendar sua avaliação diretamente entrando em contato via WhatsApp." }
+                     { q: "Como agendar a avaliação psicológica?", a: "Você pode agendar sua avaliação diretamente entrando em contato via WhatsApp." }
                  ]
             },
             "saude-mental": {
