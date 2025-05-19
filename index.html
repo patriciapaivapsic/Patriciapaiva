@@ -15,7 +15,7 @@
                         'palette2-light-bg': '#F0F0F0', // Fundo Claro
                         'palette2-light-brown': '#D4C1B0', // Bege Claro
                         'palette2-medium-brown': '#C58940', // Marrom/Laranja Médio
-                        'palette2-light-green': '#8B9C7E', // Verde Claro
+                        'palette2-light-green': '#8B9C7E', // Verde Claro (Mantido para referência, mas não usado no combo de resposta)
                         'palette2-dark-green': '#4A5D42', // Verde Escuro
                         'palette2-black': '#000000', // Preto
 
@@ -40,6 +40,18 @@
 
                           /* Nova variável para o fundo do combo de agenda */
                          'agenda-combo-bg': '#D4C1B0', /* Usando o Bege Claro da paleta */
+
+                         /* Nova cor laranja para o botão de envio (mais escura) */
+                         'send-button-orange': '#A84C32', /* Tom mais escuro de laranja */
+                         'send-button-orange-darker': '#8a3e28', /* Mais escuro ainda para hover */
+
+                         /* Nova cor cinza para o ícone do WhatsApp nos combos */
+                         'whatsapp-combo-gray': '#777777', /* Um cinza médio */
+                         'whatsapp-combo-gray-darker': '#555555', /* Um cinza mais escuro para hover */
+
+                         /* Nova cor cinza para o fundo dos combos de resposta */
+                         'answer-combo-gray': '#d9d9d9', /* Cinza indicado */
+                         'answer-combo-gray-border': '#cccccc', /* Borda um pouco mais escura */
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'], // Fonte principal Inter
@@ -73,7 +85,7 @@
             --palette2-light-bg: #F0F0F0;
             --palette2-light-brown: #D4C1B0;
             --palette2-medium-brown: #C58940;
-            --palette2-light-green: #8B9C7E;
+            --palette2-light-green: #8B9C7E; /* Mantido para o gradiente do body */
             --palette2-dark-green: #4A5D42;
             --palette2-black: #000000;
 
@@ -92,6 +104,18 @@
 
               /* Nova variável para o fundo do combo de agenda */
              --agenda-combo-bg: #D4C1B0; /* Usando o Bege Claro da paleta */
+
+             /* Nova cor laranja para o botão de envio (mais escura) */
+             --send-button-orange: #A84C32; /* Tom mais escuro de laranja */
+             --send-button-orange-darker: #8a3e28; /* Mais escuro ainda para hover */
+
+             /* Nova cor cinza para o ícone do WhatsApp nos combos */
+             --whatsapp-combo-gray: #777777; /* Um cinza médio */
+             --whatsapp-combo-gray-darker: #555555; /* Um cinza mais escuro para hover */
+
+             /* Nova cor cinza para o fundo dos combos de resposta */
+             --answer-combo-gray: #d9d9d9; /* Cinza indicado */
+             --answer-combo-gray-border: #cccccc; /* Borda um pouco mais escura */
          }
 
 
@@ -306,7 +330,8 @@
              display: flex; /* Para alinhar mensagens */
              flex-direction: column;
              overflow-y: auto; /* Manter scroll para a lista de perguntas */
-             max-height: 200px; /* Manter altura máxima para a lista de perguntas */
+             max-height: 220px; /* Manter altura máxima para a lista de perguntas */
+             padding-right: 5px; /* Adicionado padding para compensar a barra de scroll */
         }
 
          /* Estilo específico para o corpo do chat quando o combo de resposta está ativo ou é o formulário de agenda */
@@ -314,18 +339,19 @@
          .topic-chat-container .chat-body.agenda-form-active {
              overflow-y: visible; /* Remover scroll */
              max-height: none; /* Remover altura máxima */
+             padding-right: 0; /* Remover padding quando não há scroll */
          }
 
 
         .topic-chat-container .message {
-            margin-bottom: 10px;
-            padding: 8px;
+            margin-bottom: 15px;
+            padding: 10px;
             border-radius: 8px;
-            max-width: 90%;
-             align-self: flex-start; /* Padrão para mensagens */
+            max-width: 85%;
         }
 
         .topic-chat-container .message.bot {
+            align-self: flex-start;
             background-color: var(--palette2-light-bg); /* Cor para mensagens do bot (Fundo Claro) */
             color: var(--palette2-dark-green); /* Texto do bot (Dark Green) */
         }
@@ -369,11 +395,11 @@
              background-color: #e0e0e0; /* Cinza mais escuro no hover */
         }
 
-        /* Estilo para o combo de resposta */
+        /* Estilo para o combo de resposta (agora cinza) */
         .answer-combo {
-            /* Cor de fundo padrão para o combo de resposta */
-            background-color: var(--palette2-light-green); /* Verde Claro */
-            border: 1px solid #d0d0d0;
+            /* Cor de fundo alterada para cinza */
+            background-color: var(--answer-combo-gray); /* Cinza indicado */
+            border: 1px solid var(--answer-combo-gray-border); /* Borda cinza */
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 10px;
@@ -385,14 +411,16 @@
             /* Removido max-height para permitir que o combo se expanda */
         }
 
-         /* Estilo específico para o combo do livro (cinza claro) */
+         /* Estilo específico para o combo do livro (cinza claro) - Mantido, mas a cor base agora é cinza */
          .answer-combo.book-combo {
              background-color: var(--combo-light-gray); /* Cinza Claro */
+             border-color: #cccccc; /* Borda cinza */
          }
 
-         /* Estilo específico para o combo de agenda (bege claro) */
+         /* Estilo específico para o combo de agenda (bege claro) - Mantido, mas a cor base agora é cinza */
          .answer-combo.agenda-combo {
              background-color: var(--agenda-combo-bg); /* Bege Claro */
+             border-color: #cccccc; /* Borda cinza */
          }
 
 
@@ -412,7 +440,7 @@
             align-items: center;
             margin-top: 15px; /* Espaço acima do rodapé do combo */
             padding-top: 10px;
-            border-top: 1px solid #eee; /* Separador */
+            border-top: 1px solid #ccc; /* Separador cinza */
         }
 
         .answer-combo .button-group {
@@ -448,14 +476,15 @@
              border-color: #b3b3b3; /* Borda mais escura no hover */
         }
 
+        /* Estilo para o ícone do WhatsApp no rodapé dos combos (agora cinza, exceto no flutuante e botão principal) */
         .answer-combo .whatsapp-icon-link-combo {
-             color: var(--whatsapp-green); /* Cor Verde para o ícone WhatsApp no combo */
+             color: var(--whatsapp-combo-gray); /* Cor Cinza para o ícone WhatsApp no combo */
              font-size: 1.5rem; /* Tamanho do ícone REDUZIDO */
              transition: color 0.3s ease;
         }
 
          .answer-combo .whatsapp-icon-link-combo:hover {
-             color: var(--whatsapp-green-darker); /* Cor Verde mais escura no hover */
+             color: var(--whatsapp-combo-gray-darker); /* Cor Cinza mais escura no hover */
          }
 
 
@@ -563,7 +592,8 @@
         }
 
         .agenda-form button[type="submit"] {
-            background-color: var(--palette2-dark-green); /* Botão Enviar Dark Green */
+            /* Alterado para a nova cor laranja mais escura */
+            background-color: var(--send-button-orange); /* Botão Enviar Laranja Escuro */
             color: white;
             padding: 10px 15px;
             border-radius: 8px;
@@ -576,7 +606,8 @@
         }
 
         .agenda-form button[type="submit"]:hover {
-             background-color: #3c4d36; /* Dark Green mais escuro no hover */
+             /* Alterado para a nova cor laranja mais escura no hover */
+             background-color: var(--send-button-orange-darker); /* Laranja mais escura no hover */
         }
 
 
@@ -997,6 +1028,17 @@
                     if (container.id !== `chat-${topic}`) {
                         container.style.display = 'none';
                          container.classList.remove('active'); // Remover classe active
+                         // Resetar estado do chat ao fechar
+                         const chatBodyToReset = container.querySelector('.chat-body');
+                         const chatOptionsToReset = container.querySelector('.chat-options');
+                         if(chatBodyToReset) {
+                             chatBodyToReset.innerHTML = '';
+                             chatBodyToReset.classList.remove('combo-active');
+                             chatBodyToReset.classList.remove('agenda-form-active');
+                         }
+                         if(chatOptionsToReset) {
+                            chatOptionsToReset.classList.remove('hidden');
+                         }
                     }
                 });
 
@@ -1133,6 +1175,7 @@
                                 const whatsappLinkCombo = document.createElement('a');
                                 whatsappLinkCombo.href = `https://wa.me/${whatsappNumber}`;
                                 whatsappLinkCombo.target = '_blank';
+                                // Usa a nova classe para o ícone do WhatsApp nos combos (agora cinza)
                                 whatsappLinkCombo.classList.add('whatsapp-icon-link-combo');
                                 whatsappLinkCombo.innerHTML = '<i class="fab fa-whatsapp"></i>';
                                 comboFooter.appendChild(whatsappLinkCombo); // Adicionar o ícone do WhatsApp ao rodapé do combo
